@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
-  namespace: wordpress
+  namespace: dev_wordpress
 spec:
   replicas: 1
   selector:
