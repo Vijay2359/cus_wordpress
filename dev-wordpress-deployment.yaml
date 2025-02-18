@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: wordpress
-        image: vijay2359/wordpress:${BUILD_NUMBER}
+        image: vijay2359/wordpress:${IMAGE_TAG}  # Placeholder for image tag
         imagePullPolicy: Always
         ports:
         - containerPort: 80
