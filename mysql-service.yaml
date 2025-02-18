@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql
-  namespace: wordpress
+  namespace: dev_wordpress
 spec:
   ports:
     - protocol: TCP
