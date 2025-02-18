@@ -16,6 +16,7 @@ spec:
       containers:
       - name: wordpress
         image: vijay2359/wordpress:${BUILD_NUMBER}
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         env:
