@@ -8,9 +8,9 @@ RUN curl -o /var/www/html/wp-content/themes/astra.zip \
     rm /var/www/html/wp-content/themes/astra.zip
     
 #RUN curl -o /var/www/html/wp-content/plugins/yoast.zip \
-    https://downloads.wordpress.org/plugin/wordpress-seo.21.4.zip && \
-    unzip /var/www/html/wp-content/plugins/yoast.zip -d /var/www/html/wp-content/plugins/ && \
-    rm /var/www/html/wp-content/plugins/yoast.zip
+    #https://downloads.wordpress.org/plugin/wordpress-seo.21.4.zip && \
+    #unzip /var/www/html/wp-content/plugins/yoast.zip -d /var/www/html/wp-content/plugins/ && \
+    #rm /var/www/html/wp-content/plugins/yoast.zip
     
 EXPOSE 80
 
