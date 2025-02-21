@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
-  namespace: {{NAMESPACE}}  # Will be replaced dynamically for QA
+  namespace: default # Will be replaced dynamically for QA
 spec:
   replicas: 1
   selector:
