@@ -24,3 +24,5 @@ spec:
         env:
         - name: WORDPRESS_DB_PASSWORD
           value: "${DB_PASSWORD}"  # Will be injected via Jenkins credentials at runtime
+
+          
