@@ -22,7 +22,11 @@ spec:
         - name: WORDPRESS_DB_PASSWORD
           value: "${DB_PASSWORD}"  # Injected via Jenkins credentials
         - name: WORDPRESS_DB_HOST
-          value: "${WORDPRESS_DB_HOST}"  # Dynamically set in Jenkins pipeline
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: WORDPRESS_DB_HOST
+
 
 
           
