@@ -14,15 +14,15 @@ spec:
     spec:
       containers:
       - name: wordpress
-        image: vijay2359/cus-wordpress:${IMAGE_TAG}  # Image tag from Jenkins
+        image: vijay2359/cus-wordpress:${IMAGE_TAG}  # Dynamically replaced in Jenkins
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: wordpress-config  # Load from ConfigMap
         env:
         - name: WORDPRESS_DB_PASSWORD
-          value: "${DB_PASSWORD}"  # Will be injected via Jenkins credentials at runtime
+          value: "${DB_PASSWORD}"  # Injected via Jenkins credentials
+        - name: WORDPRESS_DB_HOST
+          value: "${WORDPRESS_DB_HOST}"  # Dynamically set in Jenkins pipeline
+
 
           
