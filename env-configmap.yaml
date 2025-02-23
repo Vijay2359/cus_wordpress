@@ -3,17 +3,6 @@ kind: ConfigMap
 metadata:
   name: wordpress-config
 data:
-  WORDPRESS_DB_HOST: "mysql.default.svc.cluster.local"
-  WORDPRESS_DB_USER: "root"
-  MYSQL_DATABASE: "wordpress"
-
----
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: wordpress-config
-data:
-  WORDPRESS_DB_HOST: "mysql.devwordpress.svc.cluster.local" 
-  WORDPRESS_DB_USER: "qa_user"
-  MYSQL_DATABASE: "wordpress_qa"
+  WORDPRESS_DB_HOST: "mysql.${NAMESPACE}.svc.cluster.local"
+  WORDPRESS_DB_USER: "${DB_USER}"
+  MYSQL_DATABASE: "${DB_NAME}"
