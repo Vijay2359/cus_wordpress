@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: wordpress-config
 data:
-  WORDPRESS_DB_HOST: "mysql.${NAMESPACE}.svc.cluster.local"
-  WORDPRESS_DB_USER: "${DB_USER}"
-  MYSQL_DATABASE: "${DB_NAME}"
+  WORDPRESS_DB_HOST: "mysql.$(NAMESPACE).svc.cluster.local"
+  WORDPRESS_DB_USER: "wordpress_user"
+  MYSQL_DATABASE: "wordpress_db"
