@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress 
+  name: wordpress
 spec:
   replicas: 1
   selector:
@@ -14,19 +14,16 @@ spec:
     spec:
       containers:
       - name: wordpress
-        image: vijay2359/cus-wordpress:${IMAGE_TAG}  # Dynamically replaced in Jenkins
+        image: vijay2359/cus-wordpress:${IMAGE_TAG}  # Injected from Jenkins
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: wordpress-config
         env:
         - name: WORDPRESS_DB_PASSWORD
-          value: "${DB_PASSWORD}"  # Injected via Jenkins credentials
-        - name: WORDPRESS_DB_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: wordpress-config
-              key: WORDPRESS_DB_HOST
-
+          value: "rootpassword"
 
 
           
