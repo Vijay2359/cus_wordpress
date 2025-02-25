@@ -6,4 +6,5 @@ data:
   WORDPRESS_DB_HOST: "mysql.$(NAMESPACE).svc.cluster.local"
   WORDPRESS_DB_USER: "root"
   MYSQL_DATABASE: "wordpress"
+  WORDPRESS_DB_PASSWORD: "rootpassword"
 
