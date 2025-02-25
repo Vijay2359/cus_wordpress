@@ -7,3 +7,4 @@ data:
   WORDPRESS_DB_USER: "root"
   MYSQL_DATABASE: "wordpress1"
   WORDPRESS_TABLE_PREFIX: "wp_"
+  WORDPRESS_DB_NAME: "wordpress1"
