@@ -37,8 +37,6 @@ spec:
         - name: WORDPRESS_TABLE_PREFIX
           valueFrom:
             configMapKeyRef:
-              name: wordpress-config
-              key: WORDPRESS_TABLE_PREFIX
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
