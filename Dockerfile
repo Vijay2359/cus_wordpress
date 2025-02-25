@@ -1,27 +1,17 @@
-# Base WordPress Image
 FROM wordpress:latest
 
-# Install required packages
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl unzip && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y curl unzip
 
-# Download and install Astra theme
-RUN curl -o /tmp/astra.zip https://downloads.wordpress.org/theme/astra.3.9.4.zip && \
-    unzip /tmp/astra.zip -d /var/www/html/wp-content/themes/ && \
-    rm /tmp/astra.zip
-
-# Download and install Yoast SEO plugin
-RUN curl -o /tmp/yoast.zip https://downloads.wordpress.org/plugin/wordpress-seo.21.4.zip && \
-    unzip /tmp/yoast.zip -d /var/www/html/wp-content/plugins/ && \
-    rm /tmp/yoast.zip
-
-# Add entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Expose port 80
+RUN curl -o /var/www/html/wp-content/themes/astra.zip \
+    https://downloads.wordpress.org/theme/astra.3.9.4.zip && \
+    unzip /var/www/html/wp-content/themes/astra.zip -d /var/www/html/wp-content/themes/ && \
+    rm /var/www/html/wp-content/themes/astra.zip
+    
+RUN curl -o /var/www/html/wp-content/plugins/yoast.zip \
+    https://downloads.wordpress.org/plugin/wordpress-seo.21.4.zip && \
+    unzip /var/www/html/wp-content/plugins/yoast.zip -d /var/www/html/wp-content/plugins/ && \
+    rm /var/www/html/wp-content/plugins/yoast.zip
+    
 EXPOSE 80
 
-# Start container using entrypoint script
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["apache2-foreground"]
