@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: wordpress
-        image: vijay2359/cus-wordpress:${IMAGE_TAG}  # Injected from Jenkins
+        image: vijay2359/cus-wordpress:${IMAGE_TAG}  
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -23,11 +23,7 @@ spec:
             name: wordpress-config
         - secretRef:
             name: wordpress-secrets 
-        env:
-        - name: POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
+        
 
 
           
