@@ -44,3 +44,13 @@ spec:
             secretKeyRef:
               name: wordpress-secrets
               key: WORDPRESS_DB_PASSWORD
+        - name: WORDPRESS_CONFIG_EXTRA  # 🚀 This ensures the env values are used in wp-config.php
+          value: |
+            define('DB_NAME', getenv('WORDPRESS_DB_NAME'));
+            define('DB_USER', getenv('WORDPRESS_DB_USER'));
+            define('DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD'));
+            define('DB_HOST', getenv('WORDPRESS_DB_HOST'));
+            define('DB_CHARSET', 'utf8');
+            define('DB_COLLATE', '');
+            define('WP_DEBUG', false);
+            $table_prefix = getenv('WORDPRESS_TABLE_PREFIX');
