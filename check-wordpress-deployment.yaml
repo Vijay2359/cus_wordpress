@@ -23,6 +23,11 @@ spec:
             name: wordpress-config
         - secretRef:
             name: wordpress-secrets 
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
 
 
           
