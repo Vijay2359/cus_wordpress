@@ -6,3 +6,4 @@ data:
   WORDPRESS_DB_HOST: "mysql.devwordpress.svc.cluster.local"
   WORDPRESS_DB_USER: "root"
   MYSQL_DATABASE: "wordpress1"
+  WORDPRESS_TABLE_PREFIX: "wp_"
