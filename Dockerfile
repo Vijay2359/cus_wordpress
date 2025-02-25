@@ -18,7 +18,8 @@ RUN curl -o /var/www/html/wp-content/plugins/yoast.zip \
     rm /var/www/html/wp-content/plugins/yoast.zip
 
 # Generate wp-config.php dynamically
-RUN echo "<?php
+RUN cat <<EOF > /var/www/html/wp-config.php
+<?php
 define('DB_NAME', getenv('WORDPRESS_DB_NAME') ?: 'wordpress');
 define('DB_USER', getenv('WORDPRESS_DB_USER') ?: 'root');
 define('DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD') ?: 'rootpassword');
@@ -30,7 +31,8 @@ if (!defined('ABSPATH')) {
     define('ABSPATH', __DIR__ . '/');
 }
 require_once ABSPATH . 'wp-settings.php';
-?>" > /var/www/html/wp-config.php
+?>
+EOF
 
 # Ensure correct permissions
 RUN chown www-data:www-data /var/www/html/wp-config.php
