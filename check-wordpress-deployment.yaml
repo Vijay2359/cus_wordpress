@@ -18,12 +18,29 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: wordpress-config
-        - secretRef:
-            name: wordpress-secrets 
-        
-
-
-          
+        env:
+        - name: WORDPRESS_DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: WORDPRESS_DB_HOST
+        - name: WORDPRESS_DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: WORDPRESS_DB_NAME
+        - name: WORDPRESS_DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: WORDPRESS_DB_USER
+        - name: WORDPRESS_TABLE_PREFIX
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: WORDPRESS_TABLE_PREFIX
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: WORDPRESS_DB_PASSWORD
