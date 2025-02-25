@@ -2,7 +2,7 @@
 FROM wordpress:latest
 
 # Install dependencies (curl, unzip, mysql-client)
-RUN apt-get update && apt-get install -y curl unzip mysql-client && \
+RUN apt-get update && apt-get install -y curl unzip default-mysql-client && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and install Astra theme
