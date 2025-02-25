@@ -1,7 +1,7 @@
 # Base WordPress Image
 FROM wordpress:latest
 
-# Fix package update issues
+# Install required packages
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y curl unzip && \
@@ -20,19 +20,19 @@ RUN curl -o /var/www/html/wp-content/plugins/yoast.zip \
     rm /var/www/html/wp-content/plugins/yoast.zip
 
 # Generate wp-config.php dynamically
-RUN echo "<?php
-define('DB_NAME', getenv('WORDPRESS_DB_NAME') ?: 'wordpress');
-define('DB_USER', getenv('WORDPRESS_DB_USER') ?: 'root');
-define('DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD') ?: 'rootpassword');
-define('DB_HOST', getenv('WORDPRESS_DB_HOST') ?: 'mysql.devwordpress.svc.cluster.local');
-define('DB_CHARSET', 'utf8');
-define('DB_COLLATE', '');
-define('WP_DEBUG', false);
-if (!defined('ABSPATH')) {
-    define('ABSPATH', __DIR__ . '/');
-}
-require_once ABSPATH . 'wp-settings.php';
-?>" > /var/www/html/wp-config.php
+RUN echo '<?php\n\
+define("DB_NAME", getenv("WORDPRESS_DB_NAME") ?: "wordpress");\n\
+define("DB_USER", getenv("WORDPRESS_DB_USER") ?: "root");\n\
+define("DB_PASSWORD", getenv("WORDPRESS_DB_PASSWORD") ?: "rootpassword");\n\
+define("DB_HOST", getenv("WORDPRESS_DB_HOST") ?: "mysql.devwordpress.svc.cluster.local");\n\
+define("DB_CHARSET", "utf8");\n\
+define("DB_COLLATE", "");\n\
+define("WP_DEBUG", false);\n\
+if (!defined("ABSPATH")) {\n\
+    define("ABSPATH", __DIR__ . "/");\n\
+}\n\
+require_once ABSPATH . "wp-settings.php";\n\
+' > /var/www/html/wp-config.php
 
 # Ensure correct permissions
 RUN chown www-data:www-data /var/www/html/wp-config.php
