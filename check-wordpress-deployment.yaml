@@ -18,13 +18,12 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-       envFrom:
+        envFrom:
         - configMapRef:
             name: wordpress-config
         - secretRef:
             name: wordpress-secrets
-            secretKeyRef:
-              
+        env:
         - name: WORDPRESS_CONFIG_EXTRA  
           value: |
             define('DB_NAME', getenv('WORDPRESS_DB_NAME'));
